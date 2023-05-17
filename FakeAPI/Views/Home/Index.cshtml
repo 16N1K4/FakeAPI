@@ -1,0 +1,28 @@
+﻿@model List<ToDo>
+
+<div>
+    <div class="d-flex align-items-center">
+        <h1 class="display-4 mb-3">To-Do List</h1>
+        <a asp-controller="Home" asp-action="AddToDo" class="btn btn-primary ms-3" type="button">Create New To-Do</a>
+    </div>
+
+    @foreach (var todo in Model)
+    {
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text w-100 h-100">
+                    <input type="checkbox" value="@todo.IsCompleted" aria-label="Checkbox for following text input">
+                </div>
+            </div>
+            <input type="text" class="form-control" value="@todo.Title" aria-label="Text input with checkbox" readonly>
+            <div class="input-group-prepend">
+                <a asp-controller="Home" asp-action="UpdateToDo" asp-route-todoId="@todo.Id" class="btn btn-outline-warning"
+                    type="button">Edit</a>
+            </div>
+            <div class="input-group-prepend">
+                <a asp-controller="Home" asp-action="DeleteToDo" asp-route-todoId="@todo.Id" class="btn btn-outline-danger"
+                    type="button">Delete</a>
+            </div>
+        </div>
+    }
+</div>
